@@ -2,8 +2,6 @@
 
 > **Production-ready data engineering pipeline combining Apache Airflow and dbt**
 >
-> **Zero-to-production data platform with best practices for real-world scenarios**
->
 > **Cross-database compatibility for PostgreSQL, Snowflake, and BigQuery**
 
 This repository demonstrates a production-ready data engineering pipeline that integrates Apache Airflow for workflow orchestration and dbt (data build tool) for data transformations.
