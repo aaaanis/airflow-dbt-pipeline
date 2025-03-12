@@ -1,0 +1,21 @@
+data_engineering_showcase:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: warehouse
+      port: 5432
+      user: warehouse
+      password: warehouse
+      dbname: warehouse
+      schema: analytics
+      threads: 4
+    prod:
+      type: postgres
+      host: warehouse
+      port: 5432
+      user: warehouse
+      password: warehouse
+      dbname: warehouse
+      schema: production
+      threads: 8 

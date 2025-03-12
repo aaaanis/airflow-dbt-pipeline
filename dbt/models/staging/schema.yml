@@ -1,0 +1,134 @@
+version: 2
+
+sources:
+  - name: raw
+    database: warehouse  # This should match your warehouse name
+    schema: raw
+    tables:
+      - name: customers
+        description: Customer data extracted from CSV
+        columns:
+          - name: customer_id
+            description: Primary key for customers
+            tests:
+              - unique
+              - not_null
+      - name: orders
+        description: Order data extracted from CSV
+        columns:
+          - name: order_id
+            description: Primary key for orders
+            tests:
+              - unique
+              - not_null
+      - name: products
+        description: Product data extracted from CSV
+        columns:
+          - name: product_id
+            description: Primary key for products
+            tests:
+              - unique
+              - not_null
+      - name: weather_data
+        description: Weather data extracted from API
+        columns:
+          - name: id
+            description: Primary key for weather data
+            tests:
+              - unique
+              - not_null
+
+models:
+  - name: stg_customers
+    description: Staged customer data
+    columns:
+      - name: customer_id
+        description: Primary key for customers
+        tests:
+          - unique
+          - not_null
+      - name: full_name
+        description: Customer's full name
+      - name: email
+        description: Customer's email address
+      - name: gender
+        description: Customer's gender
+      - name: country
+        description: Customer's country
+      - name: created_at
+        description: When the customer was created
+      - name: updated_at
+        description: When the record was last updated
+
+  - name: stg_orders
+    description: Staged order data
+    columns:
+      - name: order_id
+        description: Primary key for orders
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: Foreign key to customers
+        tests:
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
+      - name: order_date
+        description: Date the order was placed
+      - name: product_id
+        description: Foreign key to products
+      - name: quantity
+        description: Quantity of product ordered
+      - name: price
+        description: Unit price of product
+      - name: total_amount
+        description: Total amount of the order
+      - name: status
+        description: Order status
+      - name: updated_at
+        description: When the record was last updated
+
+  - name: stg_products
+    description: Staged product data
+    columns:
+      - name: product_id
+        description: Primary key for products
+        tests:
+          - unique
+          - not_null
+      - name: product_name
+        description: Name of the product
+      - name: category
+        description: Product category
+      - name: description
+        description: Product description
+      - name: price
+        description: Product price
+      - name: created_at
+        description: When the product was created
+      - name: updated_at
+        description: When the record was last updated
+
+  - name: stg_weather_data
+    description: Staged weather data
+    columns:
+      - name: id
+        description: Primary key for weather data
+        tests:
+          - unique
+          - not_null
+      - name: location
+        description: Location name
+      - name: country
+        description: Country name
+      - name: date
+        description: Date of weather measurement
+      - name: temperature
+        description: Temperature in degrees
+      - name: humidity
+        description: Humidity percentage
+      - name: weather_condition
+        description: Weather condition description
+      - name: updated_at
+        description: When the record was last updated 

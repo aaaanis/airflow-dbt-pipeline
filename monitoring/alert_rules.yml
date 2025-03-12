@@ -1,0 +1,65 @@
+groups:
+  - name: data_pipeline_alerts
+    rules:
+      - alert: DataFreshnessCritical
+        expr: data_freshness_seconds > 86400
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Data freshness critical for {{ $labels.table_name }}"
+          description: "Table {{ $labels.table_name }} has not been updated in {{ $value | humanizeDuration }}"
+
+      - alert: DataFreshnessWarning
+        expr: data_freshness_seconds > 43200
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Data freshness warning for {{ $labels.table_name }}"
+          description: "Table {{ $labels.table_name }} has not been updated in {{ $value | humanizeDuration }}"
+
+      - alert: PipelineFailure
+        expr: pipeline_status == 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Pipeline {{ $labels.pipeline_name }} has failed"
+          description: "The pipeline {{ $labels.pipeline_name }} is in a failed state"
+
+      - alert: AirflowTaskFailure
+        expr: sum(increase(airflow_dag_task_failed[15m])) by (dag_id) > 0
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Airflow task failures in DAG {{ $labels.dag_id }}"
+          description: "There have been task failures in the {{ $labels.dag_id }} DAG in the last 15 minutes"
+
+      - alert: AirflowHighTaskDuration
+        expr: airflow_dag_task_duration > 1800
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Airflow task long duration for {{ $labels.dag_id }}/{{ $labels.task_id }}"
+          description: "Task {{ $labels.task_id }} in DAG {{ $labels.dag_id }} is taking longer than 30 minutes to complete"
+
+      - alert: DbtModelFailure
+        expr: rate(dbt_model_failures[15m]) > 0
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "DBT model {{ $labels.model_name }} is failing"
+          description: "The DBT model {{ $labels.model_name }} has failures in the last 15 minutes"
+
+      - alert: HealthCheckFailure
+        expr: healthcheck_status == 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Health check {{ $labels.check_name }} is failing"
+          description: "The health check {{ $labels.check_name }} is reporting unhealthy status" 

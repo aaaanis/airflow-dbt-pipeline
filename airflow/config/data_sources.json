@@ -1,0 +1,62 @@
+{
+  "api_sources": [
+    {
+      "name": "weather_api",
+      "url": "https://api.example.com/weather",
+      "auth_type": "api_key",
+      "api_key_env_var": "WEATHER_API_KEY",
+      "rate_limit": 10,
+      "timeout_seconds": 30,
+      "retry_attempts": 3
+    },
+    {
+      "name": "financial_api",
+      "url": "https://api.example.com/financial",
+      "auth_type": "bearer_token",
+      "token_env_var": "FINANCIAL_API_TOKEN",
+      "rate_limit": 5,
+      "timeout_seconds": 60,
+      "retry_attempts": 5
+    }
+  ],
+  
+  "file_sources": [
+    {
+      "name": "customer_data",
+      "path": "/opt/airflow/data/customers.csv",
+      "format": "csv",
+      "delimiter": ",",
+      "has_header": true,
+      "encoding": "utf-8"
+    },
+    {
+      "name": "order_data",
+      "path": "/opt/airflow/data/orders.csv",
+      "format": "csv",
+      "delimiter": ",",
+      "has_header": true,
+      "encoding": "utf-8"
+    },
+    {
+      "name": "product_data",
+      "path": "/opt/airflow/data/products.csv",
+      "format": "csv",
+      "delimiter": ",",
+      "has_header": true,
+      "encoding": "utf-8"
+    }
+  ],
+  
+  "database_sources": [
+    {
+      "name": "warehouse",
+      "type": "postgres",
+      "host": "warehouse",
+      "port": 5432,
+      "database": "warehouse",
+      "user_env_var": "WAREHOUSE_USER",
+      "password_env_var": "WAREHOUSE_PASSWORD",
+      "schemas": ["raw", "staging", "intermediate", "mart"]
+    }
+  ]
+} 

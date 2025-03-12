@@ -1,0 +1,44 @@
+{
+  "weather_data": [
+    {
+      "location": "New York",
+      "country": "USA",
+      "date": "2023-01-15",
+      "temperature": 32.5,
+      "humidity": 65,
+      "weather_condition": "Cloudy"
+    },
+    {
+      "location": "London",
+      "country": "UK",
+      "date": "2023-01-15",
+      "temperature": 10.2,
+      "humidity": 78,
+      "weather_condition": "Rainy"
+    },
+    {
+      "location": "Tokyo",
+      "country": "Japan",
+      "date": "2023-01-15",
+      "temperature": 15.8,
+      "humidity": 45,
+      "weather_condition": "Sunny"
+    },
+    {
+      "location": "Sydney",
+      "country": "Australia",
+      "date": "2023-01-15",
+      "temperature": 28.9,
+      "humidity": 60,
+      "weather_condition": "Sunny"
+    },
+    {
+      "location": "Paris",
+      "country": "France",
+      "date": "2023-01-15",
+      "temperature": 8.5,
+      "humidity": 72,
+      "weather_condition": "Partly Cloudy"
+    }
+  ]
+} 

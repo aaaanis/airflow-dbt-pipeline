@@ -1,0 +1,11 @@
+apache-airflow==2.7.1
+dbt-core==1.5.2
+dbt-postgres==1.5.2
+psycopg2-binary==2.9.6
+pandas==2.0.3
+numpy==1.24.3
+pytest==7.3.1
+requests==2.31.0
+sqlalchemy==1.4.49
+great-expectations==0.16.1
+python-dotenv==1.0.0 

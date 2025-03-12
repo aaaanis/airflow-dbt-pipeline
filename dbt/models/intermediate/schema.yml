@@ -1,0 +1,113 @@
+version: 2
+
+models:
+  - name: int_customer_orders
+    description: Joins customer data with order and product information
+    columns:
+      - name: order_id
+        description: Primary key for orders
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: Foreign key to customers
+        tests:
+          - not_null
+      - name: customer_name
+        description: Customer's full name
+      - name: customer_email
+        description: Customer's email address
+      - name: customer_country
+        description: Customer's country
+      - name: order_date
+        description: Date the order was placed
+      - name: product_id
+        description: Foreign key to products
+      - name: product_name
+        description: Name of the product
+      - name: product_category
+        description: Category of the product
+      - name: quantity
+        description: Quantity of product ordered
+      - name: unit_price
+        description: Unit price of product
+      - name: total_amount
+        description: Total amount of the order
+      - name: order_status
+        description: Status of the order
+      - name: updated_at
+        description: When the record was last updated
+
+  - name: int_order_aggregates
+    description: Aggregates order data by customer
+    columns:
+      - name: customer_id
+        description: Primary key for customers
+        tests:
+          - unique
+          - not_null
+      - name: total_orders
+        description: Total number of orders by customer
+      - name: total_spent
+        description: Total amount spent by customer
+      - name: first_order_date
+        description: Date of customer's first order
+      - name: last_order_date
+        description: Date of customer's most recent order
+      - name: days_since_last_order
+        description: Number of days since customer's last order
+      - name: updated_at
+        description: When the record was last updated
+
+  - name: int_weather_location
+    description: Aggregates weather data by location
+    columns:
+      - name: location
+        description: Location name
+        tests:
+          - not_null
+      - name: country
+        description: Country name
+      - name: avg_temperature
+        description: Average temperature for the location
+      - name: min_temperature
+        description: Minimum temperature for the location
+      - name: max_temperature
+        description: Maximum temperature for the location
+      - name: avg_humidity
+        description: Average humidity for the location
+      - name: total_measurements
+        description: Total number of weather measurements for the location
+      - name: updated_at
+        description: When the record was last updated
+
+  - name: int_date_dimensions
+    description: Date dimension table with calendar attributes using custom date macros
+    columns:
+      - name: date_day
+        description: Calendar date
+        tests:
+          - unique
+          - not_null
+      - name: formatted_date
+        description: Formatted date string (YYYY-MM-DD)
+      - name: year
+        description: Calendar year
+      - name: quarter
+        description: Calendar quarter (1-4)
+      - name: month
+        description: Calendar month (1-12)
+      - name: day_of_month
+        description: Day of month (1-31)
+      - name: day_of_week
+        description: Day of week (0-6, where 0 is Sunday)
+      - name: is_weekend
+        description: Boolean indicating if the date is a weekend
+      - name: fiscal_year
+        description: Fiscal year (starting in April)
+      - name: date_plus_30_days
+        description: Date plus 30 days
+      - name: days_since_year_start
+        description: Number of days since the start of the current year
+      - name: updated_at
+        description: When the record was last updated 
