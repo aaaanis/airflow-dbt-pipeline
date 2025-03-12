@@ -21,8 +21,6 @@ This project showcases an end-to-end data pipeline that:
 
 ## Architecture
 
-![Architecture Diagram](docs/architecture_diagram.png)
-
 The pipeline follows this workflow:
 - **Extraction**: Airflow DAGs extract data from various sources
 - **Loading**: Raw data is loaded into the data warehouse
